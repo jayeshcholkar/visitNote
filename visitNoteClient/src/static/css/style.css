@@ -1,0 +1,425 @@
+/* Utilitiy classes */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  box-sizing: border-box;
+}
+
+/* Chrome, Edge, and Safari */
+body::-webkit-scrollbar,
+.public-DraftEditor-content::-webkit-scrollbar,
+.ant-modal-wrap::-webkit-scrollbar,
+.multi-select-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-track,
+.public-DraftEditor-content::-webkit-scrollbar-track,
+.ant-modal-wrap::-webkit-scrollbar-track,
+.multi-select-dropdown::-webkit-scrollbar-track {
+  background: none;
+  border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb,
+.public-DraftEditor-content::-webkit-scrollbar-thumb,
+.ant-modal-wrap::-webkit-scrollbar-thumb,
+.multi-select-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  border: 6px solid rgba(0, 0, 0, 0.2);
+}
+
+.ant-popover.open-rightBottom {
+  position: fixed;
+  width: 300px;
+  & .ant-popover-arrow {
+    display: none;
+  }
+  & .ant-popover-inner {
+    box-shadow: none;
+    border: 1px solid #6f767f;
+    padding: 5px 10px;
+  }
+}
+.ant-popover-inner {
+  & .search-header {
+    margin: 0 0 5px;
+  }
+  & li.ant-list-item {
+    flex-direction: column;
+    & .templateList {
+      width: 100%;
+      & .ant-spin-container {
+        overflow: auto;
+        & li.ant-list-item {
+          padding: 2px 0;
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+          border: none;
+          position: relative;
+          button.ant-btn.ant-btn-icon-only {
+            width: 25px !important;
+            min-width: 25px !important;
+            height: 25px !important;
+            min-height: 25px !important;
+            font-size: 14px !important;
+            position: absolute;
+            right: 10px;
+            top: 6px;
+            display: none;
+            svg {
+              width: 13px;
+            }
+          }
+          &:hover button.ant-btn.ant-btn-icon-only {
+            display: block;
+          }
+          &:hover a {
+            background-color: #e7eefa;
+          }
+          & a {
+            padding: 5px 35px 5px 10px;
+            border-radius: 4px;
+            font-weight: normal;
+          }
+          &.active {
+            & a {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.ant-spin-container li.ant-list-item {
+  padding: 5px 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & a {
+    width: 100%;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    opacity: 0.4;
+    cursor: no-drop;
+  }
+  &.active {
+    & a {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+.ant-btn {
+  font-weight: 600;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 5px; */
+}
+.ant-modal-footer {
+  display: flex;
+  justify-content: end;
+}
+.public-DraftEditor-content span[style*="background-color"] {
+  background: #d5e7fe !important;
+  font-size: inherit !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+}
+.ant-card-bordered {
+  border: 1px solid #dce3ee;
+}
+.temp-item {
+  margin: 0 0 20px;
+}
+.temp-item h3 {
+  margin: 0 0 10px;
+}
+.btn-editable-span {
+  display: inline-block;
+  position: relative;
+  margin: 3px;
+  background: #e7eaed url(../images/Plus.svg) no-repeat right 5px center / 18px;
+  border: 1px solid #dce3ee;
+  border-radius: 4px;
+  padding: 3px 30px 3px 10px;
+  vertical-align: middle;
+  cursor: pointer;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  max-width: 250px;
+  span {
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &.active {
+    background: #cfe3fe url(../images/Close.svg) no-repeat right 5px center /
+      18px;
+    border: 1px solid #2d85f9;
+  }
+  .anticon {
+    color: #2d85f9;
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+    top: 7px;
+    &.anticon-close {
+      color: #fe6854;
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    width: 80%;
+    text-align: center;
+    display: none;
+  }
+  &:hover::after {
+    opacity: 1;
+    display: block;
+  }
+}
+
+.ant-typography.btn-editable {
+  margin: 0;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  padding-right: 20px;
+  .ant-typography-edit {
+    color: #6f767f;
+    position: absolute;
+    right: 0;
+    .anticon {
+      color: #6f767f;
+      position: static;
+    }
+  }
+}
+
+.submit-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: end;
+}
+.page-main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  min-height: 100%;
+}
+.ant-page-header { 
+  width: 100%;
+}
+.page-sections {
+  flex: 1;
+  width: 100%;
+}
+.temp-insert {
+  /* code.bracket-text {
+    font-family: "Montserrat", sans-serif;
+  } */
+  code {
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+.multi-select-checkbox-container {
+  display: inline-block;
+  max-width: 250px;
+  margin: 3px;
+  position: relative;
+  button.dropdown-btn {
+    display: inline-block;
+    position: relative;
+    background: #e7eaed url(/src/static/images/Chevron_down.svg) no-repeat right
+      5px center / 18px;
+    border: 1px solid #dce3ee;
+    border-radius: 4px;
+    padding: 3px 30px 3px 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    word-wrap: break-word;
+    color: rgba(0, 0, 0, 0.88);
+    font-family: "Montserrat", sans-serif;
+    min-width: 100%;
+    text-align: left;
+    &.selective {
+      background: #cfe3fe url(/src/static/images/Chevron_down.svg) no-repeat
+        right 5px center / 18px;
+      border: 1px solid #2d85f9;
+    }
+  }
+  .multi-select-dropdown {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #dce3ee;
+    border-radius: 4px;
+    padding: 5px;
+    vertical-align: middle;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    min-width: 160px;
+    z-index: 3;
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    max-height: 210px;
+    overflow: auto;
+    &.selective {
+      display: block;
+    }
+    label {
+      display: block;
+      width: 100%;
+      position: relative;
+      border-radius: 5px;
+      padding: 1px 0;
+      cursor: pointer;
+      input[type="checkbox"] {
+        display: none;
+        + span {
+          display: block;
+          border-radius: 5px;
+          padding: 2px 2px 2px 25px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          &::before {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            left: 5px;
+            top: 7px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+          }
+        }
+        &:checked {
+          + span {
+            background: #cfe3fe;
+            &::before {
+              content: "";
+              border: 1px solid #2d85f9;
+              background: #cfe3fe;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              left: 9px;
+              top: 9px;
+              z-index: 3;
+              width: 3px;
+              height: 7px;
+              transform: rotate(35deg);
+              border-right: 2px solid #2d85f9;
+              border-bottom: 2px solid #2d85f9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.ant-message.ant-message-top {
+  left: 0 !important;
+  top: 0 !important;
+  transform: translate(0, 0) !important;
+  width: 100%;
+  height: 100%;
+  z-index: 10001 !important;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .ant-message-notice-content {
+    border: 1px solid #3c9762;
+    background: #e3ffe4;
+    color: #00481e;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 6px;
+    padding: 12px 20px;
+    .ant-message-custom-content {
+      display: flex;
+      gap: 0;
+    }
+  }
+}
+.suggestionList {
+  width: 300px;
+  height: 180px;
+  background: #fff;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),0 3px 6px -4px rgba(0, 0, 0, 0.12),0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border-radius: 8px;
+  overflow: auto;
+  & .ant-list-items {
+    padding-right: 15px;
+    & li.ant-list-item {
+      border: none;
+      & a {
+        padding: 5px 10px 5px 10px;
+        border-radius: 4px;
+        font-weight: normal; 
+      }
+      &:hover a {
+        background: #e7eefa;
+      }
+    }
+  }
+}
